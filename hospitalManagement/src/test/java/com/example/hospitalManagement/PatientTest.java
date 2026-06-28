@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootTest
@@ -22,17 +23,29 @@ public class PatientTest {
     @Test
     public void  testPatientRepository()
     {
-        List<Patient> patientList=patientRepository.findAll();
+    /*    List<Patient> patientList=patientRepository.findAll();
         System.out.println(patientList);
 
         Patient p1=new Patient();
-        patientRepository.save(p1);
+
+        p1.setName("TestPate33");
+        p1.setEmail("test@gmail.com");
+        patientRepository.save(p1); */
+       // List<Patient> patientList=patientRepository.findByBirthDateOrEmail(LocalDate.of(1988,3,15),"diya.patel@example.com");
+        List<Patient> patientList=patientRepository.findByNameContaining("Di");
+        for(Patient patient:patientList)
+        {
+            System.out.println(patient);
+        }
     }
 
     @Test
     public void testTransactionMethods()
     {
-        Patient patient=patientService.getPatientById(1L);
+      // Patient patient=patientService.getPatientById(1L);
+      // System.out.println(patient);
+        Patient patient=patientRepository.findByName("Diya Patel");
+       // Patient patient1=patientRepository.findByBirthDate("sa");
         System.out.println(patient);
     }
 }
