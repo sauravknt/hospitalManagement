@@ -8,6 +8,9 @@ import com.example.hospitalManagement.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
@@ -62,10 +65,16 @@ public class PatientTest {
 //
 //        int rowsUpdated=patientRepository.updateNameWithId("Arabi Sharma",1L);
 //        System.out.println(rowsUpdated);
-        List<BloodGroupCountResponseEntity> bloodGroupList = patientRepository.countEachBloodGroupType();
-        for (BloodGroupCountResponseEntity bloodGroupCountResponse : bloodGroupList) {
-            System.out.println(bloodGroupCountResponse);
+//        List<BloodGroupCountResponseEntity> bloodGroupList = patientRepository.countEachBloodGroupType();
+//        for (BloodGroupCountResponseEntity bloodGroupCountResponse : bloodGroupList) {
+//            System.out.println(bloodGroupCountResponse);
+//        }
+
+        Page<Patient> patientList=patientRepository.findAllPatients(PageRequest.of(0,2, Sort.by("name")));
+        for (Patient patient : patientList) {
+            System.out.println(patient);
         }
+
 
 
     }
