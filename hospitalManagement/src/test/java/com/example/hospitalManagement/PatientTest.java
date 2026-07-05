@@ -1,5 +1,6 @@
 package com.example.hospitalManagement;
 
+import com.example.hospitalManagement.dto.BloodGroupCountResponseEntity;
 import com.example.hospitalManagement.entity.Patient;
 import com.example.hospitalManagement.entity.type.BloodGroupType;
 import com.example.hospitalManagement.repository.PatientRepository;
@@ -58,9 +59,13 @@ public class PatientTest {
         for (Object[] objects : bloodGroupList) {
             System.out.println(objects[0] + " " + objects[1]);
         } */
-
-        int rowsUpdated=patientRepository.updateNameWithId("Arab Sharma",1L);
-        System.out.println(rowsUpdated);
+//
+//        int rowsUpdated=patientRepository.updateNameWithId("Arabi Sharma",1L);
+//        System.out.println(rowsUpdated);
+        List<BloodGroupCountResponseEntity> bloodGroupList = patientRepository.countEachBloodGroupType();
+        for (BloodGroupCountResponseEntity bloodGroupCountResponse : bloodGroupList) {
+            System.out.println(bloodGroupCountResponse);
+        }
 
 
     }
